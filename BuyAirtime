@@ -1,0 +1,209 @@
+{This program demos M-Pesa buy airtime}
+
+PROGRAM BUY_AIRTIME;
+uses crt;
+const 
+M_PIN=1234;
+MY_PHONE=254712345678;
+var
+AirAmount, Fuliza, FulizaAmount, FulizaBalance, Option, Balance, NewBalance, MobileNo, NumberofTrials, OtherPhone, UserPin:LongInt;
+
+BEGIN
+  NumberofTrials:=3;
+  Balance:=200000;
+  Fuliza:=50000;
+  FulizaAmount:=0;
+  clrscr;
+
+  writeln('----------------------------------------------------------------------------------------------------------');
+  writeln('Press option to continue: (1/2/3/..)');
+  writeln('----------------------------------------------------------------------------------------------------------');
+  writeln('1: Buy Airtime.');
+  write('>>: ');
+  readln(option);
+
+ IF (Option = 1) THEN
+ BEGIN
+  clrscr;
+  writeln('----------------------------------------------------------------------------------------------------------');
+  writeln('Press option to continue: (1/2)');
+  writeln('----------------------------------------------------------------------------------------------------------');
+  writeln('1: My Phone.');
+  writeln('2: Other Phone.');
+  write('>>: ');
+  readln(option);
+
+  if(option=1)then
+  begin
+    clrscr;
+    writeln('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+    write('Enter amount: ');
+    
+    readln(AirAmount);
+    while(AirAmount<=0)do
+    begin
+     writeln('----------------------------------------------------------------------------------------------------------');
+     Writeln('The airtime amount must be at least Ksh 1.00.');
+     writeln('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+     write('Enter amount: ');
+     readln(AirAmount);
+    end;
+    if (AirAmount>balnace) then 
+    begin
+     AirAmount-
+    end
+    clrscr;
+    writeln('********************************************');
+    write('Enter M-PESA PIN: ');
+    readln(UserPin);
+    clrscr;
+
+     if(UserPin<>M_PIN)then
+     begin
+        clrscr;
+        NumberofTrials:=NumberofTrials-1;
+        writeln('----------------------------------------------------------------------------------------------------------');
+        writeln('Failed! You entered the wrong M-Pesa PIN.');
+        writeln('You have ', NumberofTrials, ' attempts remaining.');
+        writeln('----------------------------------------------------------------------------------------------------------');
+        
+       if(NumberofTrials=2) then
+       begin
+         write('Enter M-PESA PIN: ');
+         readln(UserPin);
+         clrscr;
+
+         if (UserPin<>M_PIN) then
+         begin
+           NumberofTrials:=NumberofTrials-1;
+           writeln('----------------------------------------------------------------------------------------------------------');
+           writeln('Failed! You entered the wrong M-Pesa PIN.');
+           writeln('You have ', NumberofTrials, ' attempts remaining.');
+           writeln('----------------------------------------------------------------------------------------------------------');
+           if (NumberofTrials=1) then
+           begin
+             write('Enter M-PESA PIN: ');
+             readln(UserPin);
+             clrscr;
+
+             if(UserPin<>M_Pin)then
+             begin
+               writeln('#############################################################');
+               writeln('Failed! You have been blocked after 3 incorrect PIN attempts.');
+               writeln('#############################################################');
+               writeln('**********************************************Press ANY key to exit***************************************');
+               readkey();
+               exit;
+               clrscr;
+             end
+
+             else{3rd correct pin enter print}
+                NewBalance := Balance - AirAmount;
+                FulizaBalance := Fuliza - FulizaAmount;
+                writeln('=================================================================================================================================');
+                writeln('HDCUDYUEDV1Y 111Confirmed. You have successfully bought Ksh ', AirAmount, ' worth of airtime for +', MY_PHONE, ' at ' ,{$I %time%},' on ',{$I %date%}, '.');
+                writeln('Your M-Pesa balance is Ksh ', NewBalance, ' and your available Fuliza balance is Ksh ', FulizaBalance, '.');
+                writeln('Thank you for being our valued customer.');
+                writeln('=================================================================================================================================');
+             end;
+            end{2 correct pin enter print}
+          else
+          begin
+            NewBalance := Balance - AirAmount;
+            FulizaBalance := Fuliza - FulizaAmount;
+            writeln('=================================================================================================================================');
+            writeln('HDCUDYUEDV1Y 222 Confirmed. You have successfully bought Ksh ', AirAmount, ' worth of airtime for +', MY_PHONE, ' at ' ,{$I %time%},' on ',{$I %date%}, '.');
+            writeln('Your M-Pesa balance is Ksh ', NewBalance, ' and your available Fuliza balance is Ksh ', FulizaBalance, '.');
+            writeln('Thank you for being our valued customer.');
+            writeln('=================================================================================================================================');
+          end;
+        end;
+      end
+      else{1 correct pin enter print the underlying code}
+      begin
+        NewBalance := Balance - AirAmount;
+        FulizaBalance := Fuliza - FulizaAmount;
+        writeln('=================================================================================================================================');
+        writeln('HDCUDYUEDV1Y 333 Confirmed. You have successfully bought Ksh ', AirAmount, ' worth of airtime for +', MY_PHONE, ' at ' ,{$I %time%},' on ',{$I %date%}, '.');
+        writeln('Your M-Pesa balance is Ksh ', NewBalance, ' and your available Fuliza balance is Ksh ', FulizaBalance, '.');
+        writeln('Thank you for being our valued customer.');
+        writeln('=================================================================================================================================');
+      end;  
+  end
+  else if (option=2) then
+  begin
+   Write('Enter other phone number (9-digits)  eg :- 712345678  : ');
+   readln(MobileNo);
+   clrscr;
+      // Check if the number is not in the valid range
+    while (MobileNo < 700000000) or (MobileNo > 799999999) do
+     begin
+        writeln('Invalid phone number. Please enter a valid 9-digit number. stating from " 7.."');
+        write('Enter other phone number: ');
+        readln(MobileNo);
+    end;
+   write('Enter amount: ');
+   readln(AirAmount);
+    clrscr;
+    while(AirAmount<=0)do
+     begin
+       writeln('----------------------------------------------------------------------------------------------------------');
+       Writeln('The airtime amount must be at least Ksh 1.00.');
+       writeln('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+       write('Enter amount: ');
+       readln(AirAmount);
+    end;
+        clrscr;
+    write('Enter your M-PESA PIN: ');
+    readln(UserPin);
+    clrscr;
+    while (UserPin <> M_PIN) and (NumberofTrials > 0) do
+      begin
+        NumberofTrials := NumberofTrials - 1;
+        writeln('----------------------------------------------------------------------------------------------------------');
+        writeln('Failed! You entered the wrong M-Pesa PIN.');
+        writeln('You have ', NumberofTrials, ' attempts remaining.');
+        writeln('----------------------------------------------------------------------------------------------------------');
+        
+        if (NumberofTrials > 0) then
+        begin
+          write('Enter M-PESA PIN: ');
+          readln(UserPin);clrscr;
+        end;
+        
+        clrscr;
+      end;
+    
+    if (UserPin = M_PIN) then
+      begin
+        NewBalance := Balance - AirAmount;
+        FulizaBalance := Fuliza - FulizaAmount;
+        writeln('=================================================================================================================================');
+        writeln('HDCUDYUEDV1Y Confirmed. You have successfully bought Ksh ', AirAmount, ' worth of airtime for +254', MobileNo, ' at ' ,{$I %time%},' on ',{$I %date%}, '.');
+        writeln('Your M-Pesa balance is Ksh ', NewBalance, ' and your available Fuliza balance is Ksh ', FulizaBalance, '.');
+        writeln('Thank you for being our valued customer.');
+        writeln('=================================================================================================================================');
+      end
+      else
+      begin
+        writeln('#############################################################');
+        writeln('Failed! You have been blocked after 3 incorrect PIN attempts.');
+        writeln('#############################################################');
+    end;
+    
+  end
+  else
+  begin
+   write('enter a valid comand(1/2..)');
+  end;
+ END
+ ELSE
+ BEGIN
+  writeln('enter a valid comand(1..)');
+ END;
+
+
+ writeln('**********************************************Press ANY key to exit***************************************');
+ readkey();
+ clrscr;
+END.
